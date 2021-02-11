@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Country.destroy_all
+Rider.destroy_all
+
+Country.create(name: "Switzerland", flag_image: "/images/switzerland.png")
+Country.create(name: "Germany", flag_image: "/images/germany.png")
+Country.create(name: "Sweden", flag_image: "/images/sweden.png")
+Country.create(name: "Belgium", flag_image: "/images/belgium.png")
+Country.create(name: "Great Britain", flag_image: "/images/united-kingdom.png")
+Country.create(name: "USA", flag_image: "/images/united-states-of-america.png")
+Country.create(name: "Ireland", flag_image: "/images/ireland.png")
+
+Rider.create(name: "Steve Guerdat", points: 3627, image: "/images/guerdat.jpg", country_id: 1)
+Rider.create(name: "Martin Fuchs", points: 3373, image: "/images/fuchs.jpg", country_id: 1)
+Rider.create(name: "Daniel Deusser", points: 3362, image: "/images/deusser.png", country_id: 2)
+Rider.create(name: "Peder Fredricson", points: 3021, image: "/images/fredricson.png", country_id: 3)
+Rider.create(name: "Ben Maher", points: 2958, image: "/images/maher.jpg", country_id: 4)

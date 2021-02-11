@@ -1,0 +1,571 @@
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCountries (20210210235730)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210210235730"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRiders (20210211000348)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210211000348"]]
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 00:05:04.468623"], ["updated_at", "2021-02-11 00:05:04.468623"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.9ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 00:47:44.522901"], ["updated_at", "2021-02-11 00:47:44.522901"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 00:47:44.536650"], ["updated_at", "2021-02-11 00:47:44.536650"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.1ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 00:47:44.548126"], ["updated_at", "2021-02-11 00:47:44.548126"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.2ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 00:47:44.560214"], ["updated_at", "2021-02-11 00:47:44.560214"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 00:47:44.572375"], ["updated_at", "2021-02-11 00:47:44.572375"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 00:47:44.584159"], ["updated_at", "2021-02-11 00:47:44.584159"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.4ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 00:47:44.595789"], ["updated_at", "2021-02-11 00:47:44.595789"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["horses", "[\"Albfuehren's Bianca\", \"Claritender\"]"], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:47:44.647445"], ["updated_at", "2021-02-11 00:47:44.647445"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["horses", "[\"Cha Mu 4\", \"Faberlys\"]"], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:47:44.661290"], ["updated_at", "2021-02-11 00:47:44.661290"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["horses", "[\"Calisto Blue\", \"Casallvano\"]"], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 00:47:44.675046"], ["updated_at", "2021-02-11 00:47:44.675046"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["horses", "[\"H&M Christian K\", \"Catch Me Not S\"]"], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 00:47:44.688721"], ["updated_at", "2021-02-11 00:47:44.688721"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["horses", "[\"Tic Tac\", \"Concona\"]"], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 00:47:44.711245"], ["updated_at", "2021-02-11 00:47:44.711245"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" ORDER BY "riders"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" ORDER BY "riders"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries"[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "riders"[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ariders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "points" integer DEFAULT NULL, "horses" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_ariders_on_country_id" ON "ariders" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ariders" ("id","name","points","horses","image","country_id","created_at","updated_at")
+                     SELECT "id","name","points","horses","image","country_id","created_at","updated_at" FROM "riders"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE "riders"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "points" integer DEFAULT NULL, "horses" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "riders" ("id","name","points","horses","image","country_id","created_at","updated_at")
+                     SELECT "id","name","points","horses","image","country_id","created_at","updated_at" FROM "ariders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ariders"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210211000348)[0m
+  [1m[35m (8.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210210235730);
+
+[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 00:56:54.142504"], ["updated_at", "2021-02-11 00:56:54.142504"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "3dfd24abde54d9ea1d93ffae5a835f6f10a54ee7"], ["created_at", "2021-02-11 00:56:54.158972"], ["updated_at", "2021-02-11 00:56:54.158972"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries"[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "riders"[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ariders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "points" integer DEFAULT NULL, "horses" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_ariders_on_country_id" ON "ariders" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ariders" ("id","name","points","horses","image","country_id","created_at","updated_at")
+                     SELECT "id","name","points","horses","image","country_id","created_at","updated_at" FROM "riders"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE "riders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "points" integer DEFAULT NULL, "horses" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "riders" ("id","name","points","horses","image","country_id","created_at","updated_at")
+                     SELECT "id","name","points","horses","image","country_id","created_at","updated_at" FROM "ariders"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ariders"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210211000348)[0m
+  [1m[35m (7.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210210235730);
+
+[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 00:56:54.270112"], ["updated_at", "2021-02-11 00:56:54.270112"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-02-11 00:56:54.291313"], ["key", "environment"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "3dfd24abde54d9ea1d93ffae5a835f6f10a54ee7"], ["created_at", "2021-02-11 00:56:54.304036"], ["updated_at", "2021-02-11 00:56:54.304036"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.1ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 00:56:54.332543"], ["updated_at", "2021-02-11 00:56:54.332543"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 00:56:54.344544"], ["updated_at", "2021-02-11 00:56:54.344544"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 00:56:54.355850"], ["updated_at", "2021-02-11 00:56:54.355850"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.4ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 00:56:54.367045"], ["updated_at", "2021-02-11 00:56:54.367045"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 00:56:54.379448"], ["updated_at", "2021-02-11 00:56:54.379448"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 00:56:54.391267"], ["updated_at", "2021-02-11 00:56:54.391267"]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.9ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 00:56:54.405039"], ["updated_at", "2021-02-11 00:56:54.405039"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["horses", "[\"Albfuehren's Bianca\", \"Claritender\"]"], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:56:54.430759"], ["updated_at", "2021-02-11 00:56:54.430759"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["horses", "[\"Cha Mu 4\", \"Faberlys\"]"], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:56:54.444055"], ["updated_at", "2021-02-11 00:56:54.444055"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["horses", "[\"Calisto Blue\", \"Casallvano\"]"], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 00:56:54.457647"], ["updated_at", "2021-02-11 00:56:54.457647"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["horses", "[\"H&M Christian K\", \"Catch Me Not S\"]"], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 00:56:54.469729"], ["updated_at", "2021-02-11 00:56:54.469729"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["horses", "[\"Tic Tac\", \"Concona\"]"], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 00:56:54.482757"], ["updated_at", "2021-02-11 00:56:54.482757"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (23.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCountries (20210210235730)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210210235730"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRiders (20210211000348)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210211000348"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 00:57:35.802055"], ["updated_at", "2021-02-11 00:57:35.802055"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.1ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.8ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 00:57:43.435870"], ["updated_at", "2021-02-11 00:57:43.435870"]]
+  [1m[35m (9.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 00:57:43.450044"], ["updated_at", "2021-02-11 00:57:43.450044"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 00:57:43.461483"], ["updated_at", "2021-02-11 00:57:43.461483"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.1ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 00:57:43.473154"], ["updated_at", "2021-02-11 00:57:43.473154"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 00:57:43.484638"], ["updated_at", "2021-02-11 00:57:43.484638"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 00:57:43.495237"], ["updated_at", "2021-02-11 00:57:43.495237"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 00:57:43.506135"], ["updated_at", "2021-02-11 00:57:43.506135"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["horses", "[\"Albfuehren's Bianca\", \"Claritender\"]"], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:57:43.529265"], ["updated_at", "2021-02-11 00:57:43.529265"]]
+  [1m[35m (7.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["horses", "[\"Cha Mu 4\", \"Faberlys\"]"], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 00:57:43.542521"], ["updated_at", "2021-02-11 00:57:43.542521"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["horses", "[\"Calisto Blue\", \"Casallvano\"]"], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 00:57:43.556873"], ["updated_at", "2021-02-11 00:57:43.556873"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["horses", "[\"H&M Christian K\", \"Catch Me Not S\"]"], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 00:57:43.569696"], ["updated_at", "2021-02-11 00:57:43.569696"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["horses", "[\"Tic Tac\", \"Concona\"]"], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 00:57:43.582950"], ["updated_at", "2021-02-11 00:57:43.582950"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" ORDER BY "riders"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (20.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCountries (20210210235730)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210210235730"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRiders (20210211000348)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210211000348"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 01:24:15.400513"], ["updated_at", "2021-02-11 01:24:15.400513"]]
+  [1m[35m (8.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.1ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.4ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 01:24:22.542368"], ["updated_at", "2021-02-11 01:24:22.542368"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 01:24:22.553971"], ["updated_at", "2021-02-11 01:24:22.553971"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.9ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 01:24:22.564961"], ["updated_at", "2021-02-11 01:24:22.564961"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 01:24:22.576453"], ["updated_at", "2021-02-11 01:24:22.576453"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 01:24:22.587368"], ["updated_at", "2021-02-11 01:24:22.587368"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 01:24:22.598745"], ["updated_at", "2021-02-11 01:24:22.598745"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 01:24:22.609095"], ["updated_at", "2021-02-11 01:24:22.609095"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["horses", "[\"Albfuehren's Bianca\", \"Claritender\"]"], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:24:22.633347"], ["updated_at", "2021-02-11 01:24:22.633347"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.8ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["horses", "[\"Cha Mu 4\", \"Faberlys\"]"], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:24:22.646268"], ["updated_at", "2021-02-11 01:24:22.646268"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.6ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["horses", "[\"Calisto Blue\", \"Casallvano\"]"], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 01:24:22.658821"], ["updated_at", "2021-02-11 01:24:22.658821"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["horses", "[\"H&M Christian K\", \"Catch Me Not S\"]"], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 01:24:22.671484"], ["updated_at", "2021-02-11 01:24:22.671484"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.8ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "horses", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["horses", "[\"Tic Tac\", \"Concona\"]"], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 01:24:22.684995"], ["updated_at", "2021-02-11 01:24:22.684995"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (57.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCountries (20210210235730)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210210235730"]]
+  [1m[35m (8.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRiders (20210211000348)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "horses" varchar, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210211000348"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 01:25:47.122784"], ["updated_at", "2021-02-11 01:25:47.122784"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.1ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.0ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 01:25:56.436028"], ["updated_at", "2021-02-11 01:25:56.436028"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 01:25:56.448149"], ["updated_at", "2021-02-11 01:25:56.448149"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 01:25:56.459065"], ["updated_at", "2021-02-11 01:25:56.459065"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 01:25:56.468878"], ["updated_at", "2021-02-11 01:25:56.468878"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 01:25:56.480048"], ["updated_at", "2021-02-11 01:25:56.480048"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.2ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 01:25:56.490687"], ["updated_at", "2021-02-11 01:25:56.490687"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 01:25:56.501697"], ["updated_at", "2021-02-11 01:25:56.501697"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (2.1ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:25:56.523903"], ["updated_at", "2021-02-11 01:25:56.523903"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:25:56.536617"], ["updated_at", "2021-02-11 01:25:56.536617"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 01:25:56.550093"], ["updated_at", "2021-02-11 01:25:56.550093"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.8ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 01:25:56.563109"], ["updated_at", "2021-02-11 01:25:56.563109"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.5ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 01:25:56.575716"], ["updated_at", "2021-02-11 01:25:56.575716"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" ORDER BY "riders"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRider Load (0.4ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Update (2.4ms)[0m  [1m[33mUPDATE "riders" SET "horses" = ?, "updated_at" = ? WHERE "riders"."id" = ?[0m  [["horses", "[]"], ["updated_at", "2021-02-11 01:29:37.082508"], ["id", 1]]
+  [1m[35m (18.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders" WHERE "riders"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Update (2.2ms)[0m  [1m[33mUPDATE "riders" SET "horses" = ?, "updated_at" = ? WHERE "riders"."id" = ?[0m  [["horses", "[]"], ["updated_at", "2021-02-11 01:30:14.451206"], ["id", 2]]
+  [1m[35m (52.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" WHERE "riders"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Update (2.6ms)[0m  [1m[33mUPDATE "riders" SET "horses" = ?, "updated_at" = ? WHERE "riders"."id" = ?[0m  [["horses", "[]"], ["updated_at", "2021-02-11 01:30:49.307362"], ["id", 3]]
+  [1m[35m (16.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" WHERE "riders"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Update (1.6ms)[0m  [1m[33mUPDATE "riders" SET "horses" = ?, "updated_at" = ? WHERE "riders"."id" = ?[0m  [["horses", "[]"], ["updated_at", "2021-02-11 01:31:24.168123"], ["id", 4]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" WHERE "riders"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Update (1.7ms)[0m  [1m[33mUPDATE "riders" SET "horses" = ?, "updated_at" = ? WHERE "riders"."id" = ?[0m  [["horses", "[]"], ["updated_at", "2021-02-11 01:31:57.351852"], ["id", 5]]
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRider Load (0.3ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (58.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCountries (20210210235730)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "flag_image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210210235730"]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRiders (20210211000348)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "riders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "points" integer, "image" varchar, "country_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ed67c8f794"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_riders_on_country_id" ON "riders" ("country_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210211000348"]]
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-11 01:33:24.019112"], ["updated_at", "2021-02-11 01:33:24.019112"]]
+  [1m[35m (9.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mRider Load (0.1ms)[0m  [1m[34mSELECT "riders".* FROM "riders"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.0ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Switzerland"], ["flag_image", "/images/switzerland.png"], ["created_at", "2021-02-11 01:33:55.701361"], ["updated_at", "2021-02-11 01:33:55.701361"]]
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Germany"], ["flag_image", "/images/germany.png"], ["created_at", "2021-02-11 01:33:55.715288"], ["updated_at", "2021-02-11 01:33:55.715288"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (2.1ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweden"], ["flag_image", "/images/sweden.png"], ["created_at", "2021-02-11 01:33:55.728442"], ["updated_at", "2021-02-11 01:33:55.728442"]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.9ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Belgium"], ["flag_image", "/images/belgium.png"], ["created_at", "2021-02-11 01:33:55.741879"], ["updated_at", "2021-02-11 01:33:55.741879"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Great Britain"], ["flag_image", "/images/united-kingdom.png"], ["created_at", "2021-02-11 01:33:55.754123"], ["updated_at", "2021-02-11 01:33:55.754123"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.8ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["flag_image", "/images/united-states-of-america.png"], ["created_at", "2021-02-11 01:33:55.766453"], ["updated_at", "2021-02-11 01:33:55.766453"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (1.7ms)[0m  [1m[32mINSERT INTO "countries" ("name", "flag_image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ireland"], ["flag_image", "/images/ireland.png"], ["created_at", "2021-02-11 01:33:55.779781"], ["updated_at", "2021-02-11 01:33:55.779781"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Steve Guerdat"], ["points", 3627], ["image", "/images/guerdat.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:33:55.804904"], ["updated_at", "2021-02-11 01:33:55.804904"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Martin Fuchs"], ["points", 3373], ["image", "/images/fuchs.jpg"], ["country_id", 1], ["created_at", "2021-02-11 01:33:55.820130"], ["updated_at", "2021-02-11 01:33:55.820130"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRider Create (1.8ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Daniel Deusser"], ["points", 3362], ["image", "/images/deusser.png"], ["country_id", 2], ["created_at", "2021-02-11 01:33:55.834740"], ["updated_at", "2021-02-11 01:33:55.834740"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRider Create (1.7ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Peder Fredricson"], ["points", 3021], ["image", "/images/fredricson.png"], ["country_id", 3], ["created_at", "2021-02-11 01:33:55.850041"], ["updated_at", "2021-02-11 01:33:55.850041"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRider Create (1.8ms)[0m  [1m[32mINSERT INTO "riders" ("name", "points", "image", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Ben Maher"], ["points", 2958], ["image", "/images/maher.jpg"], ["country_id", 4], ["created_at", "2021-02-11 01:33:55.865120"], ["updated_at", "2021-02-11 01:33:55.865120"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRider Load (0.2ms)[0m  [1m[34mSELECT "riders".* FROM "riders" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" LIMIT ?[0m  [["LIMIT", 11]]
