@@ -41,6 +41,8 @@ install 'fast_jsonapi'
 
     *add attributes to serializer classes
 
+**build index.html file
+
 before fetching*
     - include gem 'rack-cors'
     cors - cross origin resource sharing
@@ -69,3 +71,5 @@ creating POST fetch:
     
 
 create endPoint variable for api route being fetched from
+
+*what is up with tmp file 
