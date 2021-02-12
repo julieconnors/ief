@@ -2,7 +2,10 @@ class Api::V1::RidersController < ApplicationController
 
     def index
         riders = Rider.all
-        render json: riders
+        # options = {
+        #     include: [:country]
+        # }
+        render json: RiderSerializer.new(riders)
     end
 
     def create
