@@ -70,6 +70,9 @@ creating POST fetch:
     })
     
 
-create endPoint variable for api route being fetched from
 
 *what is up with tmp file 
+
+
+Stretch goals: 
+    - rendering images - rider profile and flag icon
