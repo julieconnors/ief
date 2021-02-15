@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <form class="rider-form">    
             <input type="text" name="name" placeholder="Rider Name" id="rider-name">
             <br>
+            <input type="text" name="rider-image" placeholder="Image URL" id="rider-image">
+            <br>
             <select name="country" id="rider-country">
                 <option value="1">Switzerland</option>
                 <option value="2">Germany</option>
@@ -65,8 +67,10 @@ function createTableRow(riderObj){
     // flagImage.src = riderObj.attributes.country.flag_image
     // flag.appendChild(flagImage) 
 
-    // let image = document.createElement("td")
-    // image.innerHTML = riderObj.attributes.image
+    let imageCell = document.createElement("td")
+    let image = document.createElement("img")
+    image.src = riderObj.attributes.image
+    imageCell.appendChild(image)
 
     let points = document.createElement("td")
     points.innerHTML = riderObj.attributes.points
@@ -74,11 +78,14 @@ function createTableRow(riderObj){
     // addRiderToTable
     row.appendChild(ranking)
     row.appendChild(name)
+    row.appendChild(image)
     row.appendChild(country)
     // row.appendChild(flagimage)
     row.appendChild(points)
 
+    // add row to table
     rankingTable.appendChild(row)
+    
 }
 
 function mountSubmitListener() {
@@ -91,24 +98,26 @@ function createRiderFormHandler(e) {
     e.preventDefault()
 
     const riderName = document.querySelector("#rider-name").value
+    const riderImage = document.querySelector("#rider-image").value
     const riderPoints = document.querySelector("#rider-points").value
     const countryId = parseInt(document.querySelector("#rider-country").value)
 
-    postFetch(riderName, riderPoints, countryId)
+    postFetch(riderName, riderImage, riderPoints, countryId)
 }
 
-function postFetch(name, points, country_id) {
-    console.log(name, points, country_id)
-
-    fetch(endpoint, {
+function postFetch(name, image, points, country_id) {
+    const riderData = {name, image, points, country_id}
+    fetch(ridersEndpoint, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            // rider attributes
-        })
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(riderData)
     })
         .then(res => res.json())
         .then(rider => {
-            console.log(rider)
+            createTableRow(rider.data)
     })
 }
+
