@@ -10,8 +10,9 @@ class Api::V1::RidersController < ApplicationController
 
     def create
         rider = Rider.new(rider_params)
+        # binding.pry
         if rider.save
-            render json: rider
+            render json: RiderSerializer.new(rider)
         else
             render json: { errors: rider.errors.full_messages }
         end
