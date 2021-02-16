@@ -73,6 +73,7 @@ creating POST fetch:
 
 *what is up with tmp file 
 
+Add validation and catch errors?
 
 Stretch goals: 
     - rendering images - rider profile and flag icon
