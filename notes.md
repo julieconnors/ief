@@ -70,6 +70,10 @@ creating POST fetch:
     })
     
 
-create endPoint variable for api route being fetched from
 
 *what is up with tmp file 
+
+Add validation and catch errors?
+
+Stretch goals: 
+    - rendering images - rider profile and flag icon

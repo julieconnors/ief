@@ -2,13 +2,17 @@ class Api::V1::RidersController < ApplicationController
 
     def index
         riders = Rider.all
-        render json: riders
+        # options = {
+        #     include: [:country]
+        # }
+        render json: RiderSerializer.new(riders)
     end
 
     def create
         rider = Rider.new(rider_params)
+        # binding.pry
         if rider.save
-            render json: rider
+            render json: RiderSerializer.new(rider)
         else
             render json: { errors: rider.errors.full_messages }
         end
